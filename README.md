@@ -1,4 +1,4 @@
-# Sistema MRP (Material Requirements Planning)
+# GUIMP - MRP
 
 ## Introdução
 
