@@ -1,38 +1,39 @@
 package com.github.guiphilippsen.model.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "funcionarios")
+public class Funcionarios {
 
-public class funcionarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "nome")
-    public String nome;
+    private String nome;
+
     @Column(name = "password")
-    public String password;
+    private String password;
+
     @Column(name = "cargo")
-    public String cargo;
+    private String cargo;
+
     @Column(name = "datacontratacao")
-    public Date datacontratacao;
+    private Date dataContratacao;
 
-    public String getPassword() {
-        return password;
+    public Funcionarios() {
+
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,12 +45,12 @@ public class funcionarios {
         this.nome = nome;
     }
 
-    public Date getDatacontratacao() {
-        return datacontratacao;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDatacontratacao(Date datacontratacao) {
-        this.datacontratacao = datacontratacao;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCargo() {
@@ -58,5 +59,13 @@ public class funcionarios {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public Date getDataContratacao() {
+        return dataContratacao;
+    }
+
+    public void setDataContratacao(Date dataContratacao) {
+        this.dataContratacao = dataContratacao;
     }
 }

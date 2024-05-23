@@ -6,26 +6,30 @@ import java.util.Date;
 
 @Entity
 @Table(name = "estoquemp")
-public class estoquemp {
-
+public class MateriaPrima {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
+
 
     @Column(name = "nome")
-    public String nome;
+    private String nome;
 
     @Column(name = "qtdestoque")
-    public Double qtdestoque;
+    private Double qtdestoque;
 
     @Column(name = "lote")
-    public Long lote;
+    private Long lote;
 
     @Column(name = "fornecedor")
-    public String fornecedor;
+    private String fornecedor;
 
     @Column(name = "datarecebimento")
-    public Date datarecebimento;
+    private Date datarecebimento;
+
+    public MateriaPrima() {
+
+    }
 
     public Long getId() {
         return id;
@@ -41,6 +45,14 @@ public class estoquemp {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Double getQtdestoque() {
+        return qtdestoque;
+    }
+
+    public void setQtdestoque(Double qtdestoque) {
+        this.qtdestoque = qtdestoque;
     }
 
     public Long getLote() {
