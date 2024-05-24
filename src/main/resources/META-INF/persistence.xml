@@ -9,12 +9,14 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <!-- Specify the entity classes or packages -->
-        <class>com.github.guiphilippsen.model.entities</class>
+        <class>com.github.guiphilippsen.model.entities.EstoqueMP</class>
+        <class>com.github.guiphilippsen.model.entities.EstoquePF</class>
+        <class>com.github.guiphilippsen.model.entities.Funcionarios</class>
 
         <!-- Database connection properties -->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/MRP-HOMOLOGAÇAO"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/guimp-mrp"/>
             <property name="javax.persistence.jdbc.user" value="postgres"/>
             <property name="javax.persistence.jdbc.password" value="882400"/>
 

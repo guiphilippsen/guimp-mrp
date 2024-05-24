@@ -2,11 +2,12 @@ package com.github.guiphilippsen.model.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
 @Table(name = "estoquemp")
-public class MateriaPrima {
+public class EstoqueMP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,8 +28,13 @@ public class MateriaPrima {
     @Column(name = "datarecebimento")
     private Date datarecebimento;
 
-    public MateriaPrima() {
-
+    public EstoqueMP(Long id, String nome, Double qtdestoque, Long lote, String fornecedor, Date datarecebimento) {
+        this.id = id;
+        this.nome = nome;
+        this.qtdestoque = qtdestoque;
+        this.lote = lote;
+        this.fornecedor = fornecedor;
+        this.datarecebimento = datarecebimento;
     }
 
     public Long getId() {
