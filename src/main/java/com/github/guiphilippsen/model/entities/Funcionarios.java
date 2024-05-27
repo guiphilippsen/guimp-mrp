@@ -1,13 +1,11 @@
 package com.github.guiphilippsen.model.entities;
 
 import javax.persistence.*;
-
 import java.util.Date;
 
 @Entity
 @Table(name = "funcionarios")
 public class Funcionarios {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,8 +23,20 @@ public class Funcionarios {
     @Column(name = "datacontratacao")
     private Date dataContratacao;
 
-    public Funcionarios() {
+    public Funcionarios() {}
+    public Funcionarios(int id, String nome, String password, String cargo) {
+        this.id = id;
+        this.nome = nome;
+        this.password = password;
+        this.cargo = cargo;
+    }
 
+    public Funcionarios(int id, String nome, String password, String cargo, Date dataContratacao) {
+        this.id = id;
+        this.nome = nome;
+        this.password = password;
+        this.cargo = cargo;
+        this.dataContratacao = dataContratacao;
     }
 
     public int getId() {

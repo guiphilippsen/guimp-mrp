@@ -1,6 +1,6 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
+!**/src/mainMenu/**/target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
@@ -29,7 +29,7 @@ src/main/resources/META-INF/persistence.xml
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/main/**/build/
+!**/src/mainMenu/**/build/
 !**/src/test/**/build/
 
 ### VS Code ###
