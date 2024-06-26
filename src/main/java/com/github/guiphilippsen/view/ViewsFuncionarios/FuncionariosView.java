@@ -15,7 +15,6 @@ public class FuncionariosView extends JFrame {
     public FuncionariosView() {
         setTitle("Gerenciamento de Funcionários");
         setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();

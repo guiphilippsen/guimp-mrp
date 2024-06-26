@@ -19,12 +19,8 @@ public class ClienteController {
         this.clienteService = new ClienteService();
         this.mainMenu = mainMenu;
         this.clienteView = clienteView;
-        initView();
     }
 
-    public void initView(){
-        mainMenu.setVisible(true);
-    }
     public void initController() {
         mainMenu.getBtnViewClientes().addActionListener(e -> showClienteView());
         ClienteView.getBtnSave().addActionListener(e -> addCliente());

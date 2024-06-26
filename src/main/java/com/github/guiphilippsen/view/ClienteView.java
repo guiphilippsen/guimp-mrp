@@ -1,7 +1,6 @@
 package com.github.guiphilippsen.view;
 
 import javax.swing.*;
-import javax.swing.table.TableModel;
 import java.awt.*;
 
 public class ClienteView extends JFrame {

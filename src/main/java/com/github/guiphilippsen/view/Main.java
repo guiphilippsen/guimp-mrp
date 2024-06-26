@@ -12,6 +12,7 @@ import com.github.guiphilippsen.view.ViewsFuncionarios.UpFuncionariosView;
 
 public class Main {
     public static void main(String[] args) {
+        LoginView loginView = new LoginView();
         //Menu Principal
         MainMenu mainMenu = new MainMenu();
         //Painel de Clientes
@@ -30,5 +31,6 @@ public class Main {
         UpEstoqueView upEstoqueView = new UpEstoqueView();
         EstoqueController estoqueController = new EstoqueController(mainMenu, estoqueView, addProductView, upEstoqueView);
         estoqueController.initController();
+        //Realizar Venda
     }
 }

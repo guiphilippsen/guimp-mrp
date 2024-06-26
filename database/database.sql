@@ -19,11 +19,8 @@ create table if not exists estoque(
 id serial not null primary key,
 nome varchar(256) not null,
 qtdEstoque float not null,
-valor float not null,
+valor float not null
 
-CONSTRAINT fk_userProd
-FOREIGN KEY (idUsrProd)
-REFERENCES funcionarios(id)
 );
 -- Teabela Pedido Venda --
 create table if not exists pedidoVenda(
@@ -34,16 +31,11 @@ idCliente serial not null,
 qtdVenda float not null,
 valor float not null,
 dataVenda date not null,
-CONSTRAINT fk_produto
-FOREIGN KEY (idProduto)
-REFERENCES estoque(id),
+
 CONSTRAINT fk_vendedor
 FOREIGN KEY (idVendedor)
 REFERENCES funcionarios(id),
 CONSTRAINT fk_cliente
 FOREIGN KEY (idCliente)
-REFERENCES cliente(id),
-CONSTRAINT fk_valor
-FOREIGN KEY (valor)
-REFERENCES estoque(valor)
+REFERENCES cliente(id)
 );
