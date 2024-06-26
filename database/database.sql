@@ -2,7 +2,8 @@
 create table if not exists funcionarios(
 id serial not null primary key,
 nome varchar(256) not null,
-password varchar(256) not null,
+codigoAcesso int,
+password varchar(256),
 cargo varchar(256) not null,
 dataContratacao date not null
 );
@@ -35,6 +36,7 @@ dataVenda date not null,
 CONSTRAINT fk_vendedor
 FOREIGN KEY (idVendedor)
 REFERENCES funcionarios(id),
+
 CONSTRAINT fk_cliente
 FOREIGN KEY (idCliente)
 REFERENCES cliente(id)
