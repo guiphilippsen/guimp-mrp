@@ -10,6 +10,7 @@ import com.github.guiphilippsen.view.ViewsEstoque.UpEstoqueView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import java.awt.event.ActionListener;
 
 public class EstoqueController {
     private MainMenu mainMenu;
@@ -42,9 +43,16 @@ public class EstoqueController {
     private void showEstoqueView() {
         estoqueView.setVisible(true);
     }
+
     private void showAddProductView() {
+        // Limpa os listeners antigos antes de adicionar um novo
+        for (ActionListener al : addProductView.getBtnAddEstoque().getActionListeners()) {
+            addProductView.getBtnAddEstoque().removeActionListener(al);
+        }
+        addProductView.getBtnAddEstoque().addActionListener(e -> addProduct());
         addProductView.setVisible(true);
     }
+
     private void showUpEstoqueView() {
         int selectedRow = estoqueView.getEstoqueTable().getSelectedRow();
         if (selectedRow >= 0) {
@@ -58,7 +66,6 @@ public class EstoqueController {
 
     private void addProduct() {
         try {
-
             String nome = addProductView.getTxtNome().getText();
             if (nome.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(addProductView, "Nome do produto não pode ser vazio", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -76,6 +83,7 @@ public class EstoqueController {
                 valor = Double.valueOf(addProductView.getTxtValor().getText());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(addProductView, "Valor Inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             Estoque estoque = new Estoque(nome, qtdEstoque, valor);
             estoqueService.addEstoque(estoque);
@@ -139,14 +147,18 @@ public class EstoqueController {
             JOptionPane.showMessageDialog(upEstoqueView, "Formato de ID inválido", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private  void deleteProduct() {
+
+    private void deleteProduct() {
         int selectedRow = estoqueView.getEstoqueTable().getSelectedRow();
         if (selectedRow >= 0) {
             int id = (int) estoqueView.getEstoqueTable().getValueAt(selectedRow, 0);
             estoqueService.deleteEstoque(id);
             loadProducts();
+        } else {
+            JOptionPane.showMessageDialog(estoqueView, "Selecione um produto para deletar", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     private void loadProducts() {
         List<Estoque> produtos = estoqueService.getAllEstoque();
         DefaultTableModel model = (DefaultTableModel) estoqueView.getEstoqueTable().getModel();

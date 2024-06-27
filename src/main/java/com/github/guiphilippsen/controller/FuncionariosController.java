@@ -11,6 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.util.List;
+import java.awt.event.ActionListener;
 
 public class FuncionariosController {
     private MainMenu mainMenu;
@@ -34,6 +35,7 @@ public class FuncionariosController {
         funcionariosView.getBtnUpdate().addActionListener(e -> showUpdateFuncionariosView());
         funcionariosView.getBtnDelete().addActionListener(e -> deleteFuncionario());
         funcionariosView.getBtnSearch().addActionListener(e -> searchFuncionario());
+
         addFuncionariosView.getBtnAdd().addActionListener(e -> addFuncionario());
         upFuncionariosView.getBtnUpdate().addActionListener(e -> updateFuncionario());
 
@@ -43,7 +45,13 @@ public class FuncionariosController {
     private void showFuncionariosView() {
         funcionariosView.setVisible(true);
     }
+
     private void showAddFuncionariosView() {
+        // Limpa os listeners anteriores antes de adicionar um novo
+        for (ActionListener al : addFuncionariosView.getBtnAdd().getActionListeners()) {
+            addFuncionariosView.getBtnAdd().removeActionListener(al);
+        }
+        addFuncionariosView.getBtnAdd().addActionListener(e -> addFuncionario());
         addFuncionariosView.setVisible(true);
     }
 
@@ -52,6 +60,7 @@ public class FuncionariosController {
         if (selectedRow >= 0) {
             int id = (int) funcionariosView.getFuncionariosTable().getValueAt(selectedRow, 0);
             Funcionarios funcionarios = funcionariosService.getFuncionarioById(id);
+            upFuncionariosView.setFuncionarioData(funcionarios);
             upFuncionariosView.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(funcionariosView, "Selecione um funcionário para atualizar", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -61,14 +70,19 @@ public class FuncionariosController {
     private void addFuncionario() {
         try {
             String nome = addFuncionariosView.getTxtNome().getText();
-            String password = new String(addFuncionariosView.getTxtPassword().getPassword());
             String cargo = addFuncionariosView.getTxtCargo().getText();
             Date dataContratacao = addFuncionariosView.getDateContratacao().getDate();
 
-            Funcionarios funcionarios = new Funcionarios(0, nome, password, cargo, dataContratacao);
+            if (nome.isEmpty() || cargo.isEmpty() || dataContratacao == null) {
+                JOptionPane.showMessageDialog(addFuncionariosView, "Todos os campos são obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Funcionarios funcionarios = new Funcionarios(0, nome, cargo, dataContratacao);
             funcionariosService.addFuncionario(funcionarios);
             loadFuncionarios();
             addFuncionariosView.dispose();
+            JOptionPane.showMessageDialog(funcionariosView, "Funcionário adicionado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(addFuncionariosView, "Erro ao adicionar funcionário: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -81,10 +95,16 @@ public class FuncionariosController {
             String password = new String(upFuncionariosView.getTxtPassword().getPassword());
             String cargo = upFuncionariosView.getTxtCargo().getText();
 
+            if (nome.isEmpty() || password.isEmpty() || cargo.isEmpty()) {
+                JOptionPane.showMessageDialog(upFuncionariosView, "Todos os campos são obrigatórios", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Funcionarios funcionario = new Funcionarios(id, nome, password, cargo);
             funcionariosService.updateFuncionario(funcionario);
             loadFuncionarios();
             upFuncionariosView.dispose();
+            JOptionPane.showMessageDialog(funcionariosView, "Funcionário atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(upFuncionariosView, "Erro ao atualizar funcionário: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -96,6 +116,7 @@ public class FuncionariosController {
             int id = (int) funcionariosView.getFuncionariosTable().getValueAt(selectedRow, 0);
             funcionariosService.deleteFuncionario(id);
             loadFuncionarios();
+            JOptionPane.showMessageDialog(funcionariosView, "Funcionário deletado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(funcionariosView, "Selecione um funcionário para deletar", "Erro", JOptionPane.ERROR_MESSAGE);
         }

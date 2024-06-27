@@ -14,9 +14,6 @@ public class Funcionarios {
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "password")
-    private String password;
-
     @Column(name = "cargo")
     private String cargo;
 
@@ -24,19 +21,23 @@ public class Funcionarios {
     private Date dataContratacao;
 
     public Funcionarios() {}
-    public Funcionarios(int id, String nome, String password, String cargo) {
+    public Funcionarios(int id, String nome, String cargo) {
         this.id = id;
         this.nome = nome;
-        this.password = password;
         this.cargo = cargo;
     }
 
-    public Funcionarios(int id, String nome, String password, String cargo, Date dataContratacao) {
+    public Funcionarios(int id, String nome, String cargo, Date dataContratacao) {
         this.id = id;
         this.nome = nome;
-        this.password = password;
         this.cargo = cargo;
         this.dataContratacao = dataContratacao;
+    }
+
+    public Funcionarios(int id, String nome, String password, String cargo) {
+        this.id = id;
+        this.nome = nome;
+        this.cargo = cargo;
     }
 
     public int getId() {
@@ -53,14 +54,6 @@ public class Funcionarios {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getCargo() {

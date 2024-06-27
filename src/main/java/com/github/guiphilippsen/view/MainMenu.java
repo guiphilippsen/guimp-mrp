@@ -12,7 +12,7 @@ public class MainMenu extends JFrame {
         setTitle("GUIMP-MRP");
         setSize(510, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(false);
+        setVisible(true);
 
         btnViewClientes = new JButton("Cadastro de Clientes");
         btnViewEstoque = new JButton("Visualizar Estoque");

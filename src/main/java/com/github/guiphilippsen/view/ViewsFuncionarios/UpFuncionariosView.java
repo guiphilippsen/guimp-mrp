@@ -39,7 +39,6 @@ public class UpFuncionariosView extends JFrame {
     public void setFuncionarioData(Funcionarios funcionario) {
         txtId.setText(String.valueOf(funcionario.getId()));
         txtNome.setText(funcionario.getNome());
-        txtPassword.setText(funcionario.getPassword());
         txtCargo.setText(funcionario.getCargo());
     }
 

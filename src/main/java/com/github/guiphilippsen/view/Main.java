@@ -12,7 +12,6 @@ import com.github.guiphilippsen.view.ViewsFuncionarios.UpFuncionariosView;
 
 public class Main {
     public static void main(String[] args) {
-        LoginView loginView = new LoginView();
         //Menu Principal
         MainMenu mainMenu = new MainMenu();
         //Painel de Clientes
